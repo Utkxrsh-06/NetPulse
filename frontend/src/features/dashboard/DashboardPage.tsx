@@ -10,6 +10,7 @@ import { MetricChart, RangePicker } from "@/components/charts";
 import { api } from "@/lib/api";
 import { fmtMs, fmtPct } from "@/lib/format";
 import type { DashboardSummary, MetricPoint, Range } from "@/lib/types";
+import { IntelligentDiagnosisSection } from "./IntelligentDiagnosisSection";
 
 function Kpi({ label, value, hint }: { label: string; value: string | number; hint?: string }) {
   return (
@@ -47,6 +48,10 @@ export function DashboardPage() {
           <Kpi label="Network uptime" value={fmtPct(s.networkUptimePct, 2)} hint="last 24 hours" />
         </div>
       )}
+
+      <div className="mt-4">
+        <IntelligentDiagnosisSection />
+      </div>
 
       <Panel title="Average latency" className="mt-4" action={<RangePicker value={range} onChange={setRange} />}>
         <div className="p-4">

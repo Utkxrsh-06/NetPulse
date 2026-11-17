@@ -18,7 +18,10 @@ export function LoginPage() {
   const { user, signIn } = useAuth();
   const location = useLocation();
   const [error, setError] = useState<string | null>(null);
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Values>({ resolver: zodResolver(schema) });
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Values>({
+    resolver: zodResolver(schema),
+    defaultValues: { username: "admin", password: "admin" }
+  });
 
   if (user) return <Navigate to={(location.state as { from?: string } | null)?.from ?? "/"} replace />;
 
